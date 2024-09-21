@@ -1,8 +1,9 @@
-export const add = (numbers) => {
+function add(numbers) {
     if (numbers === '') {
         return 0;
     }
 
+    // Handle custom delimiters
     if (numbers.startsWith('//')) {
         const delimiter = numbers[2];
         numbers = numbers.slice(4);
@@ -10,11 +11,12 @@ export const add = (numbers) => {
         return sumNumbers(nums);
     }
 
-    const nums = numbers.split(/[,\\n]/);
+    // Default case: split on commas and new lines
+    const nums = numbers.split(/[\n,]/);
     return sumNumbers(nums);
 }
 
-const sumNumbers = (nums) => {
+function sumNumbers(nums) {
     let sum = 0;
     const negatives = [];
 
@@ -32,3 +34,5 @@ const sumNumbers = (nums) => {
 
     return sum;
 }
+
+module.exports = { add };
